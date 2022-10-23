@@ -75,14 +75,22 @@ return [
     'schemas' => [
         'default' => [
             'query' => [
-                // ExampleQuery::class,
+                'quest' => \App\GraphQL\Queries\Quest\QuestQuery::class,
+                'quests' => \App\GraphQL\Queries\Quest\QuestsQuery::class,
+                'category' => \App\GraphQL\Queries\Category\CategoryQuery::class,
+                'categories' => \App\GraphQL\Queries\Category\CategoriesQuery::class,
             ],
             'mutation' => [
-                // ExampleMutation::class,
+                'createQuest' => \App\GraphQL\Mutations\Quest\CreateQuestMutation::class,
+                'updateQuest' => \App\GraphQL\Mutations\Quest\UpdateQuestMutation::class,
+                'deleteQuest' => \App\GraphQL\Mutations\Quest\DeleteQuestMutation::class,
+                'createCategory' => \App\GraphQL\Mutations\Category\CreateCategoryMutation::class,
+                'updateCategory' => \App\GraphQL\Mutations\Category\UpdateCategoryMutation::class,
+                'deleteCategory' => \App\GraphQL\Mutations\Category\DeleteCategoryMutation::class,
             ],
             // The types only available in this schema
             'types' => [
-                // ExampleType::class,
+                
             ],
 
             // Laravel HTTP middleware
@@ -105,16 +113,22 @@ return [
     //     App\GraphQL\Types\UserType::class
     // ]
     //
-    'types' => [
-        // ExampleType::class,
-        // ExampleRelationType::class,
-        // \Rebing\GraphQL\Support\UploadType::class,
-    ],
+    // 'types' => [
+        //     // ExampleType::class,
+        //     // ExampleRelationType::class,
+        //     // \Rebing\GraphQL\Support\UploadType::class,
+        // ],
+        
+        'types' => [
+                    'Quest' => \App\GraphQL\Types\QuestType::class,
+                    'Category' => \App\GraphQL\Types\CategoryType::class
+        ],
+        
+        // The types will be loaded on demand. Default is to load all types on each request
+        // Can increase performance on schemes with many types
+        // Presupposes the config type key to match the type class name property
 
-    // The types will be loaded on demand. Default is to load all types on each request
-    // Can increase performance on schemes with many types
-    // Presupposes the config type key to match the type class name property
-    'lazyload_types' => true,
+        'lazyload_types' => true,
 
     // This callable will be passed the Error object for each errors GraphQL catch.
     // The method should return an array representing the error.
