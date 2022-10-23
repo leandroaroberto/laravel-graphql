@@ -6,15 +6,17 @@ This is a sample project to get more familiar with the usage of GraphQL hosted b
 
 After cloning this repo install laravel sail:
 
+`composer require laravel/sail --dev`
+
 `php artisan sail:install`
 
 Run the docker container with sail:
 
-`vendor/bin/sail up -d`
+`./vendor/bin/sail up -d`
 
 Install all dependencies with composer:
 
-`vendor/bin/sail composer install`
+`./vendor/bin/sail composer install`
 
 ### GraphQL queries
 
