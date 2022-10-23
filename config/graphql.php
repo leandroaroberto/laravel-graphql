@@ -72,30 +72,6 @@ return [
     //      ],
     //  ]
     //
-    // 'schemas' => [
-    //     'default' => [
-    //         'query' => [
-    //             // ExampleQuery::class,
-    //         ],
-    //         'mutation' => [
-    //             // ExampleMutation::class,
-    //         ],
-    //         // The types only available in this schema
-    //         'types' => [
-    //             // ExampleType::class,
-    //         ],
-
-    //         // Laravel HTTP middleware
-    //         'middleware' => null,
-
-    //         // Which HTTP methods to support; must be given in UPPERCASE!
-    //         'method' => ['GET', 'POST'],
-
-    //         // An array of middlewares, overrides the global ones
-    //         'execution_middleware' => null,
-    //     ],
-    // ],
-
     'schemas' => [
         'default' => [
             'query' => [
@@ -112,8 +88,19 @@ return [
                 'updateCategory' => \App\GraphQL\Mutations\Category\UpdateCategoryMutation::class,
                 'deleteCategory' => \App\GraphQL\Mutations\Category\DeleteCategoryMutation::class,
             ],
-            'middleware' => [],
-            'method' => ['get', 'post'],
+            // The types only available in this schema
+            'types' => [
+                
+            ],
+
+            // Laravel HTTP middleware
+            'middleware' => null,
+
+            // Which HTTP methods to support; must be given in UPPERCASE!
+            'method' => ['GET', 'POST'],
+
+            // An array of middlewares, overrides the global ones
+            'execution_middleware' => null,
         ],
     ],
 
@@ -127,20 +114,21 @@ return [
     // ]
     //
     // 'types' => [
-    //     // ExampleType::class,
-    //     // ExampleRelationType::class,
-    //     // \Rebing\GraphQL\Support\UploadType::class,
-    // ],
+        //     // ExampleType::class,
+        //     // ExampleRelationType::class,
+        //     // \Rebing\GraphQL\Support\UploadType::class,
+        // ],
+        
+        'types' => [
+                    'Quest' => \App\GraphQL\Types\QuestType::class,
+                    'Category' => \App\GraphQL\Types\CategoryType::class
+        ],
+        
+        // The types will be loaded on demand. Default is to load all types on each request
+        // Can increase performance on schemes with many types
+        // Presupposes the config type key to match the type class name property
 
-    'types' => [
-       'Quest' => \App\GraphQL\Types\QuestType::class,
-       'Category' => \App\GraphQL\Types\CategoryType::class
-    ],
-
-    // The types will be loaded on demand. Default is to load all types on each request
-    // Can increase performance on schemes with many types
-    // Presupposes the config type key to match the type class name property
-    'lazyload_types' => true,
+        'lazyload_types' => true,
 
     // This callable will be passed the Error object for each errors GraphQL catch.
     // The method should return an array representing the error.
